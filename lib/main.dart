@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart'; //package type on google dart dateformat
 
 import './transaction.dart';
 
@@ -30,6 +31,11 @@ class MyHomePage extends StatelessWidget {
     ),
   ];
 
+  //String titleInput;
+  //String amountInput;
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,8 +43,8 @@ class MyHomePage extends StatelessWidget {
         title: Text('Flutter App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.start,
+        //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
             width: double.infinity,
@@ -46,6 +52,34 @@ class MyHomePage extends StatelessWidget {
               color: Colors.red,
               child: Text('CHART!'),
               elevation: 5,
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                    /*onChanged: (val) {
+                      titleInput = val;
+                    },*/
+                    controller: titleController,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                   // onChanged: (val) => amountInput = val,
+                   controller: amountController,
+                  ),
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text('Add Transction'),
+                    textColor: Colors.purple,
+                  )
+                ],
+              ),
             ),
           ),
           Column(
@@ -59,7 +93,7 @@ class MyHomePage extends StatelessWidget {
                         horizontal: 10,
                       ),
                       child: Text(
-                        tx.amount.toString(),
+                        '\$${tx.amount}', //String Interpolation
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -81,11 +115,11 @@ class MyHomePage extends StatelessWidget {
                           tx.title,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                         Text(
-                          tx.date.toString(),
+                          DateFormat.yMMMMd().format(tx.date), // format date
                           style: TextStyle(
                             color: Colors.grey,
                           ),
