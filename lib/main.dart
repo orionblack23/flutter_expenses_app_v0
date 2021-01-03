@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; //package type on google dart dateformat
 
-import './transaction.dart';
+import './models/transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -33,7 +33,7 @@ class MyHomePage extends StatelessWidget {
 
   //String titleInput;
   //String amountInput;
-  final titleController = TextEditingController();
+  final titleController = TextEditingController(); // How to use controller
   final amountController = TextEditingController();
 
   @override
@@ -66,7 +66,7 @@ class MyHomePage extends StatelessWidget {
                     /*onChanged: (val) {
                       titleInput = val;
                     },*/
-                    controller: titleController,
+                    controller: titleController,//Helps you save input data through controller
                   ),
                   TextField(
                     decoration: InputDecoration(labelText: 'Amount'),
